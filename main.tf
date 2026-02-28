@@ -12,16 +12,16 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg_demo" {
-  name     = "rg-reuse-mod-lab"
+resource "azurerm_resource_group" "rg_demo_faheem" {
+  name     = "rg-reuse-faheem-lab"
   location = "eastus"
 }
 
 module "my_network_bundle" {
   source          = "./modules/network_bundle"
   vnet_name       = "vnet-reuse-lab"
-  location        = azurerm_resource_group.rg_demo.location
-  rg_name         = azurerm_resource_group.rg_demo.name
+  location        = azurerm_resource_group.rg_demo_faheem.location
+  rg_name         = azurerm_resource_group.rg_demo_faheem.name
   address_space   = ["10.10.0.0/16"]
   subnetA_name    = "frontend-subnet"
   subnetA_prefix  = "10.10.1.0/24"
